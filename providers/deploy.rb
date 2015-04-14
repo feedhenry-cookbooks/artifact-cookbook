@@ -319,7 +319,7 @@ def artifact_filename
     artifact = NexusCli::Artifact.new(artifact_location)
     artifact.file_name
   else
-    ::File.basename(artifact_location)
+    ::File.basename(artifact_location.split('?').first)
   end
 end
 
