@@ -227,7 +227,7 @@ def extract_artifact!
       taropts = taropts.join(' ')
 
       execute "extract_artifact!" do
-        command "tar #{taropts} -f #{cached_tar_path} -C #{release_path}"
+        command "tar #{taropts} -f #{cached_tar_path} -C #{release_path} --strip #{new_resource.remove_top_level_directory ? 1 : 0}"
         user new_resource.owner unless Chef::Artifact.windows?
         group new_resource.group unless Chef::Artifact.windows?
         retries 2
